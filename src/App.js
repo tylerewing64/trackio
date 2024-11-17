@@ -1,13 +1,21 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import logo from './logo.svg';
 import './App.css';
 import Sidebar from './Components/Sidebar';
-import Dashboard from './Components/Dashboard';
-import Applications from './Components/Applications';
-import Subscriptions from './Components/Subscriptions';
-import Resume from './Components/Resume';
+import Dashboard from './Pages/Dashboard';
+import Applications from './Pages/Applications';
+import Subscriptions from './Pages/Subscriptions';
+import Resume from './Pages/Resume';
+import Notifications from './Components/Notifications';
+import {PageStateContext } from './Context/PageState';
+import {UserStateContext} from './Context/UserState'
+
+
 function App() {
-  const [currentPage, setCurrentPage] = useState(0);
+  const { currentPage, setCurrentPage } = useContext(PageStateContext);
+  const {userState, setUserState}= useContext(UserStateContext);
+  //HARD CODED VALUE TO TEST 
+  setUserState('Tyler Ewing');
 
   const pages = [
     <Dashboard />, 
@@ -19,12 +27,12 @@ function App() {
 
 
   return (
-    <div className='flex'>
-    <Sidebar 
-    setCurrentPage = {setCurrentPage}
-    />
-    {pages[currentPage]}
-    
+    <div className='flex w-screen'>
+      <Sidebar/>
+        <div className=' w-full'>
+          <Notifications />
+          {pages[currentPage]}
+        </div>
     </div>
   );
 }

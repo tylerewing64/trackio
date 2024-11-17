@@ -9,6 +9,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 1rem;
+  /*hardcoded value change this value*/
+  background-color: #F6F6F6;
 }
 
 code {
