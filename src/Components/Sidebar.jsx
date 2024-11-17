@@ -5,7 +5,7 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import AttachEmailOutlinedIcon from '@mui/icons-material/AttachEmailOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 
-function Sidebar() {
+function Sidebar({setCurrentPage}) {
   const [selectedPage, setSelectedPage] = useState();
 
   const handlePageSelect = (page) => { 
@@ -17,25 +17,25 @@ function Sidebar() {
         <div className="flex flex-col p-4"> 
           <span className="text-3xl  ">TRACKIO</span>
           <span className={`rounded-md p-1 mt-4  text-m flex items-center gap-2 hover:bg-main-color-hover cursor-pointer ${selectedPage === 'Dashboard' ? 'text-[#9DFF94]' : null}`}
-            onClick={() => handlePageSelect('Dashboard')}
+            onClick={() => {handlePageSelect('Dashboard'); setCurrentPage(0)}}
           >
             <CottageOutlinedIcon />
             Dashboard
           </span>
           <span className= {`rounded-md p-1 mt-4 text-m flex items-center gap-2 hover:bg-main-color-hover cursor-pointer ${selectedPage === 'Applications' ? 'text-[#9DFF94]' : null}`}
-             onClick={() => handlePageSelect('Applications')}
+             onClick={() => {handlePageSelect('Applications'); setCurrentPage(1)}}
           >
             <AttachEmailOutlinedIcon  />
             Applications
           </span>
           <span className= {`rounded-md p-1 mt-4 text-m flex items-center gap-2 hover:bg-main-color-hover cursor-pointer ${selectedPage === 'Resume' ? 'text-[#9DFF94]' : null}`}
-            onClick={()=> handlePageSelect('Resume')}
+            onClick={()=> {handlePageSelect('Resume'); setCurrentPage(3)}}
           >
             <ArticleOutlinedIcon />
             Resume
           </span>
           <span  className= {`rounded-md p-1 mt-4 text-m flex items-center gap-2 hover:bg-main-color-hover cursor-pointer ${selectedPage === 'Settings' ? 'text-[#9DFF94]' : null}`}
-            onClick={()=> handlePageSelect('Settings')}
+            onClick={()=> {handlePageSelect('Settings'); setCurrentPage(2)}}
           >
             <SettingsOutlinedIcon />
             Settings
