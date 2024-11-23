@@ -2,18 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import Login from './Pages/Login'
 import reportWebVitals from './reportWebVitals';
 import {PageStateProvider} from './Context/PageState';
 import {UserStateProvider} from './Context/UserState';
-
+import { BrowserRouter } from "react-router-dom";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <UserStateProvider>
-      <PageStateProvider>
-        <App />
-      </PageStateProvider>
-    </UserStateProvider>
+    <BrowserRouter>
+      <UserStateProvider>
+        <PageStateProvider>
+        <App/>
+        </PageStateProvider>
+      </UserStateProvider>
+      </BrowserRouter>
   </React.StrictMode>
 );
 
