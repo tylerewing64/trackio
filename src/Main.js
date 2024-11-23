@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import logo from './logo.svg';
 import './App.css';
 import './Login.css'
@@ -11,6 +11,7 @@ import Notifications from './Components/Notifications';
 import {PageStateContext } from './Context/PageState';
 import {UserStateContext} from './Context/UserState'
 import { Routes, Route } from "react-router-dom";
+import Cookies from 'js-cookie'
 
 function Main() {
   const { currentPage, setCurrentPage } = useContext(PageStateContext);
@@ -25,6 +26,11 @@ function Main() {
     <Resume />
 
   ]
+
+  useEffect(()=> { 
+   
+  },[])
+
 
 
   return (

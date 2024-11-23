@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import {PageStateProvider} from './Context/PageState';
 import {UserStateProvider} from './Context/UserState';
 import { BrowserRouter } from "react-router-dom";
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
