@@ -1,6 +1,35 @@
-import React from 'react';
+import React, {useRef, useState} from 'react';
+import Cookie from 'js-cookie'
+const {authenticateUser } = require('../services/userFetches');
+
 
 export default function Login() {
+    const [errorMsg, setErrorMsg] = useState();
+    const email = useRef(null);
+    const password = useRef(null);
+
+    const handleSumbit = async(e) => { 
+        if(e.key === 'Enter'){
+            e.preventDefault();  
+            {/* Run if login is succesful */}
+            if(email.current.value && password.current.value){ 
+                
+                const response = await authenticateUser(email.current.value, password.current.value);
+                if(response.status === 200){
+                    const token = await response.json(); 
+                    Cookie.set('token', token);
+                    return  window.location.href = '/home';
+                }
+            
+                return setErrorMsg('Wrong Email or Password!')
+            
+            }
+            return setErrorMsg('Missing Password or Email')
+        }
+    }
+    
+
+    
     return (
         <div className="flex min-h-screen items-center justify-center bg-black">
             <div className="p-8 md:p-12 rounded-2xl border-2 border-gray-700 bg-gray-900 shadow-lg w-full max-w-md">
@@ -55,6 +84,9 @@ export default function Login() {
                     <div>
                         <label className="text-sm text-gray-400">Email</label>
                         <input
+                            onKeyDown={(e) => handleSumbit(e)}
+                            onChange ={() => setErrorMsg('')}
+                            ref = {email}
                             className="w-full border-2 border-gray-600 rounded-md p-3 mt-1 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-green-500"
                             placeholder="Enter your email"
                             type="email"
@@ -63,6 +95,9 @@ export default function Login() {
                     <div className="mt-4">
                         <label className="text-sm text-gray-400">Password</label>
                         <input
+                            onKeyDown={(e) => handleSumbit(e)}
+                            onChange ={() => setErrorMsg('')}
+                            ref = {password}
                             className="w-full border-2 border-gray-600 rounded-md p-3 mt-1 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-green-500"
                             placeholder="Enter your password"
                             type="password"
@@ -72,7 +107,10 @@ export default function Login() {
 
                 {/* Action Buttons */}
                 <div className="mt-8 flex flex-col gap-y-4">
-                    <button className="py-3 rounded-lg bg-green-500 text-black text-m font-bold active:scale-[.98] hover:scale-[1.01] ease-in-out transition-all">
+                    <button 
+                     onClick={() => handleSumbit()}
+                     
+                     className="py-3 rounded-lg bg-green-500 text-black text-m font-bold active:scale-[.98] hover:scale-[1.01] ease-in-out transition-all">
                         Sign in
                     </button>
                     <a href="./f" className="font-medium text-sm text-gray-400 text-center hover:text-white transition">
@@ -81,6 +119,7 @@ export default function Login() {
                     <a href="./r" className="font-medium text-sm text-gray-400 text-center hover:text-white transition">
                         Sign up
                     </a>
+                    <span className='text-center text-red-400 text-sm'>{errorMsg}</span>
                 </div>
             </div>
         </div>
