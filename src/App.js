@@ -1,12 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
-import Sidebar from './Sidebar';
+import React from 'react'
+import Main from '../src/Main'
+import Login from '../src/Pages/Login'
+import { Routes, Route } from "react-router-dom";
+
 function App() {
   return (
-    <>
-    <Sidebar/>
-    </>
-  );
+   <> 
+    <Routes>
+        <Route path='/' element={ <Login/> } />
+        <Route path='home' element={ <Main/> } />
+      </Routes>
+   </>
+  )
 }
 
-export default App;
+export default App
