@@ -5,7 +5,7 @@ import './Login.css'
 import Sidebar from './Components/Sidebar';
 import Dashboard from './Pages/Dashboard';
 import Applications from './Pages/Applications';
-import Subscriptions from './Pages/Subscriptions';
+import Settings from './Pages/Settings';
 import Resume from './Pages/Resume';
 import Notifications from './Components/Notifications';
 import {PageStateContext } from './Context/PageState';
@@ -22,7 +22,7 @@ function Main() {
   const pages = [
     <Dashboard />, 
     <Applications/>, 
-    <Subscriptions/>, 
+    <Settings/>, 
     <Resume />
 
   ]
