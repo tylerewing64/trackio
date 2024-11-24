@@ -7,7 +7,7 @@ function AuthenticationPage() {
   
   return (
    <> 
-   <div className = ' w-full h-screen'>
+   <div className = ' w-full '>
         {Cookies.get('token') ? ( 
             <Main/>
         ):

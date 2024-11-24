@@ -8,8 +8,8 @@ function Notifications() {
 
   const obj ={ 
     0: 'Dashboard', 
-    1: 'Application',
-    2: 'Subscription',
+    1: 'Applications',
+    2: 'Settings',
     3: 'Resume'
   }
 

@@ -1,38 +1,28 @@
-.App {
-  text-align: center;
+.h-75vh{ 
+  height:75vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.h-50vh{ 
+  height:80vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Apply globally to all elements with overflow */
+* {
+  scrollbar-width: thin; /* Firefox - makes the scrollbar thinner */
+  scrollbar-color: #b1b1b1 #f3f4f6; /* Firefox - sets thumb color and track color */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Webkit browsers (Chrome, Safari, Edge) */
+*::-webkit-scrollbar {
+  width: 8px; /* Set width of the scrollbar */
 }
 
-.App-link {
-  color: #61dafb;
+*::-webkit-scrollbar-thumb {
+  background-color: #a1a1a1; /* Color of the thumb */
+  border-radius: 10px; /* Rounded corners for the thumb */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+*::-webkit-scrollbar-track {
+  background-color: #a4a4a5; /* Color of the scrollbar track */
+  border-radius: 10px; /* Optional: rounded corners for the track */
 }

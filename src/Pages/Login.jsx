@@ -8,9 +8,14 @@ export default function Login() {
     const email = useRef(null);
     const password = useRef(null);
 
-    const handleSumbit = async(e) => { 
-        if(e.key === 'Enter'){
-            e.preventDefault();  
+    const handleKeydown = async(e) => { 
+        if(e.key === 'Enter'){ 
+            handleSumbit();
+        }
+    }
+    const handleSumbit = async() => { 
+        
+            
             {/* Run if login is succesful */}
             if(email.current.value && password.current.value){ 
                 
@@ -23,7 +28,7 @@ export default function Login() {
             
                 return setErrorMsg('Wrong Email or Password!')
             
-            }
+         
             return setErrorMsg('Missing Password or Email')
         }
     }
@@ -31,7 +36,7 @@ export default function Login() {
 
     
     return (
-        <div className="flex min-h-screen items-center justify-center bg-black">
+        <div className=" grid flex min-h-screen items-center justify-center bg-black">
             <div className="p-8 md:p-12 rounded-2xl border-2 border-gray-700 bg-gray-900 shadow-lg w-full max-w-md">
                 {/* Logo Section */}
                 {/* Uncomment if using a logo */}
@@ -46,7 +51,7 @@ export default function Login() {
                 </h1>
 
                 {/* Social Login Buttons */}
-                <div className="flex flex-col mt-5">
+                <div className="flex flex-col mt-5  ">
                     <div className="flex items-center rounded-3xl border-gray-600 border-2 my-2 p-2 cursor-pointer active:scale-[.98] hover:scale-[1.01] ease-in-out transition-all bg-gray-800">
                         <img 
                             src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png" 
@@ -84,7 +89,7 @@ export default function Login() {
                     <div>
                         <label className="text-sm text-gray-400">Email</label>
                         <input
-                            onKeyDown={(e) => handleSumbit(e)}
+                            onKeyDown={(e) => handleKeydown(e)}
                             onChange ={() => setErrorMsg('')}
                             ref = {email}
                             className="w-full border-2 border-gray-600 rounded-md p-3 mt-1 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -95,7 +100,7 @@ export default function Login() {
                     <div className="mt-4">
                         <label className="text-sm text-gray-400">Password</label>
                         <input
-                            onKeyDown={(e) => handleSumbit(e)}
+                            onKeyDown={(e) => handleKeydown(e)}
                             onChange ={() => setErrorMsg('')}
                             ref = {password}
                             className="w-full border-2 border-gray-600 rounded-md p-3 mt-1 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -108,15 +113,15 @@ export default function Login() {
                 {/* Action Buttons */}
                 <div className="mt-8 flex flex-col gap-y-4">
                     <button 
-                     onClick={() => handleSumbit()}
+                     onClick={(e) => handleSumbit(e)}
                      
                      className="py-3 rounded-lg bg-green-500 text-black text-m font-bold active:scale-[.98] hover:scale-[1.01] ease-in-out transition-all">
                         Sign in
                     </button>
-                    <a href="./f" className="font-medium text-sm text-gray-400 text-center hover:text-white transition">
+                    <a href="/forgetpassword" className="font-medium text-sm text-gray-400 text-center hover:text-white transition">
                         Forgot password?
                     </a>
-                    <a href="./r" className="font-medium text-sm text-gray-400 text-center hover:text-white transition">
+                    <a href="/signup" className="font-medium text-sm text-gray-400 text-center hover:text-white transition">
                         Sign up
                     </a>
                     <span className='text-center text-red-400 text-sm'>{errorMsg}</span>
