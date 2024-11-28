@@ -36,7 +36,7 @@ export default function Login() {
 
     
     return (
-        <div className=" grid flex min-h-screen items-center justify-center bg-black">
+        <div className="  phone:p-8 grid flex min-h-screen items-center justify-center bg-black">
             <div className="p-8 md:p-12 rounded-2xl border-2 border-gray-700 bg-gray-900 shadow-lg w-full max-w-md">
                 {/* Logo Section */}
                 {/* Uncomment if using a logo */}
