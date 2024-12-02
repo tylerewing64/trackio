@@ -1,5 +1,6 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useContext} from 'react';
 import Cookie from 'js-cookie'
+import {UserStateContext} from '../Context/UserState'
 const {authenticateUser } = require('../services/userFetches');
 
 
@@ -7,6 +8,7 @@ export default function Login() {
     const [errorMsg, setErrorMsg] = useState();
     const email = useRef(null);
     const password = useRef(null);
+    const {userState, setUserState}= useContext(UserStateContext);
 
     const handleKeydown = async(e) => { 
         if(e.key === 'Enter'){ 
@@ -22,7 +24,9 @@ export default function Login() {
                 const response = await authenticateUser(email.current.value, password.current.value);
                 if(response.status === 200){
                     const token = await response.json(); 
-                    Cookie.set('token', token);
+                    Cookie.set('token', token.token);
+                    Cookie.set('id', token.id)
+                    
                     return  window.location.href = '/home';
                 }
             

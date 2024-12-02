@@ -5,8 +5,8 @@ import Switch from '@mui/material/Switch';
 
 function Settings() {
   return (
-    <div className='px-8'>
-      <div className='overflow-y-auto h-50vh'>
+    <div className='px-8 flex justify-center flex-col items-center'>
+      <div className='overflow-y-auto h-50vh  w-2/4'>
       <ResumeUpload/>
       
         <div className='border-2 mt-4 p-4 rounded-md flex-col flex bg-white'>
