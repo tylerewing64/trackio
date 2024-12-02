@@ -30,8 +30,8 @@ function Applications() {
     const formData = new FormData(e.target);
     const formObject = Object.fromEntries(formData.entries());
 
-    if(!formObject.job_title && !formObject.job_location && !formObject.job_posting_url){ 
-      setErrorMsg("Missing required input field!")
+    if(!formObject.job_title || !formObject.job_location || !formObject.job_posting_url){ 
+      return setErrorMsg("Missing required input field!")
     }
     const response = await createApplication(formObject, Number(Cookies.get('id'))); 
     if(response.status === 200){ 
@@ -54,7 +54,6 @@ function Applications() {
     errorMsg = {errorMsg}
     setErrorMsg ={setErrorMsg}
   > 
-    
      <span className='text-lg'>Add Application</span>
      <span className='text-xs text-red-600'>{errorMsg} </span>
      <span className='text-xs italic mt-2'>Job Title*</span>
@@ -71,7 +70,6 @@ function Applications() {
      <input type = 'text' className='font border-b border-gray-600 outline-none' name = 'job_salary'/>
      <button type = 'submit' className=' text-xs rounded-md p-2 mt-4 bg-dark-green text-white'>Add Application</button>
      <button type = 'submit' className=' text-xs rounded-md p-2 mt-2 bg-black text-white' onClick= {() => setToggleApplicationPopup(false)}>Back</button>
-
   </Popups>
   </>): null}
     <ApplictionSearch
