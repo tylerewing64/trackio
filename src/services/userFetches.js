@@ -16,3 +16,11 @@ export const authenticateUser = async(username, password) => {
     
 }
 
+export const createUser = async(formData) => { 
+    console.log(formData);
+    return await fetch(`${api}/api/user`, { 
+      
+        method : 'POST', 
+        body: formData
+    })
+}
