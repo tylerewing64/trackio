@@ -25,7 +25,8 @@ export default function Forget() {
   };
 
   return (
-    <div className = "flex min-h-screen items-center justify-center bg-black ">
+
+    <div className = "p-8 flex min-h-screen items-center justify-center bg-black ">
       <div className="p-8 md:p-12 rounded-lg bg-gray-900 shadow-lg w-full max-w-md rounded-2xl border-2 border-gray-700 bg-gray-900 shadow-lg">
         <h1 className="text-3xl md:text-4xl font-bold text-white text-center mb-6">
           Reset your password

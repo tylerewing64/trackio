@@ -13,8 +13,12 @@ module.exports = {
         'dark-green': '#1DB954',
         'secondary-color': '#EDEDED',
         'third-color': ' bg-secondary-color'
-      }
+      }, 
+    
     },
+    screens : { 
+      'phone': '350px'
+    }
   },
   plugins: [],
 }

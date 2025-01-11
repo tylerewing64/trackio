@@ -1,11 +1,18 @@
-.h-75vh{ 
-  height:75vh;
+.h-75vh {
+  height: 75vh;
 }
 
-.h-50vh{ 
-  height:80vh;
+.h-50vh {
+  height: 80vh;
 }
 
+/*Controls height of container for step 2 & 3*/
+.signUpStep-container-height {
+  height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 /* Apply globally to all elements with overflow */
 * {
   scrollbar-width: thin; /* Firefox - makes the scrollbar thinner */

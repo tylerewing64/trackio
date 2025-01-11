@@ -17,7 +17,7 @@ function Main() {
   const { currentPage, setCurrentPage } = useContext(PageStateContext);
   const {userState, setUserState}= useContext(UserStateContext);
   //HARD CODED VALUE TO TEST 
-  setUserState('Tyler Ewing');
+  
 
   const pages = [
     <Dashboard />, 

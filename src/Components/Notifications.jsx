@@ -2,9 +2,11 @@ import React, {useContext} from 'react'
 import {UserStateContext} from '../Context/UserState'
 import { PageStateContext } from '../Context/PageState';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
+
 function Notifications() {
-  const {userState, setUserState}= useContext(UserStateContext);
+ 
   const { currentPage, setCurrentPage } = useContext(PageStateContext);
+  const {userState, setUserState}= useContext(UserStateContext);
 
   const obj ={ 
     0: 'Dashboard', 
@@ -18,6 +20,7 @@ function Notifications() {
       <h2 className='text-2xl  ml-5 font-bold'>{obj[currentPage]}</h2>
       <div className='flex items-center text-slate-500 cursor-pointer'>
         <NotificationsNoneOutlinedIcon />
+
         <span className=' text-sm	'>
           {userState ? userState : null}
         </span>

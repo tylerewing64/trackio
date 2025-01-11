@@ -1,78 +1,93 @@
-import React from 'react';
+import React, { useState } from "react";
+import SignUpStepTwo from "../Components/SignUpStepTwo";
+import SignUpStepOne from "../Components/SignUpStepOne";
+import SignUpStepThree from "../Components/SignUpStepThree";
+import { createUser } from "../services/userFetches";
+export default function Signup({ children }) {
+  const [stepNumber, setStepNumber] = useState(0);
+  const [email, setEmail] = useState();
+  const [username, setUserName] = useState();
+  const [password, setPassword] = useState();
+  const [month, setMonth] = useState();
+  const [date, setDate] = useState();
+  const [year, setYear] = useState();
+  const [dob, setDob] = useState();
+  const [roles_intrested_in, set_roles_interested_in] = useState();
+  const [city, setCity] = useState();
+  const [state, setState] = useState();
+  const [country, setCountry] = useState();
 
-export default function Signup() {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (stepNumber < 2) {
+      setStepNumber((stepNumber) => {
+        return stepNumber + 1;
+      });
+    } else {
+      const formData = createFormObj();
+      const response = await createUser(formData);
+    }
+  };
+
+  const createDate = (month, date, year) => {
+    let dateObj = new Date(year, month, date);
+
+    return dateObj;
+  };
+  const createFormObj = () => {
+    const location_preference = city + ", " + state + ", " + country;
+    const formObj = new FormData();
+    setDob(createDate(month, date, year));
+    formObj.append("username", username);
+    formObj.append("password", password);
+    formObj.append("email", email);
+    formObj.append("dob", dob);
+    formObj.append("location_preference", location_preference);
+    formObj.append("role_preference", roles_intrested_in);
+
+    return formObj;
+  };
+
+  const handleBackButton = () => {
+    setStepNumber((stepNumber) => {
+      return stepNumber - 1;
+    });
+  };
+  const signUpSteps = [
+    <SignUpStepOne email={email} setEmail={setEmail} />,
+    <SignUpStepTwo
+      username={username}
+      setUserName={setUserName}
+      setPassword={setPassword}
+      password={password}
+      handleBackButton={handleBackButton}
+      setDob={setDob}
+      month={month}
+      date={date}
+      year={year}
+      setDate={setDate}
+      setMonth={setMonth}
+      setYear={setYear}
+    />,
+    <SignUpStepThree
+      setStepNumber={setStepNumber}
+      handleBackButton={handleBackButton}
+      city={city}
+      state={state}
+      country={country}
+      setCity={setCity}
+      setState={setState}
+      setCountry={setCountry}
+      roles_intrested_in={roles_intrested_in}
+      set_roles_interested_in={set_roles_interested_in}
+    />,
+  ];
   return (
     <div className="grid min-h-screen flex items-center justify-center bg-black">
       <div className="p-8 md:p-12 rounded-2xl border-2 border-gray-700 bg-gray-900 w-full max-w-md shadow-lg">
-        <h1 className="text-3xl md:text-4xl font-semibold text-white py-2 break-words">
-          Sign up to Trackio
-        </h1>
-
-        <div>
-          <label className="text-sm text-gray-400">Email</label>
-          <input
-            className="w-full border-2 border-gray-600 rounded-md p-3 mt-1 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-green-500"
-            placeholder="Enter your email"
-          />
-        </div>
-
-        <div className="mt-8 flex flex-col gap-y-4">
-          <button className="py-3 rounded-lg bg-green-500 text-black text-m font-bold active:scale-[.98] hover:scale-[1.01] ease-in-out transition-all">
-            Register
-          </button>
-        </div>
-
-        {/* Divider */}
-        <div className="flex items-center my-4">
-          <div className="flex-grow border-t border-gray-600"></div>
-          <span className="px-4 text-gray-500 text-sm">or</span>
-          <div className="flex-grow border-t border-gray-600"></div>
-        </div>
-
-        {/* Social Login Buttons */}
-        <div className="flex flex-col mt-5">
-          <div className="flex items-center rounded-3xl border-gray-600 border-2 my-2 p-2 cursor-pointer active:scale-[.98] hover:scale-[1.01] ease-in-out transition-all bg-gray-800">
-            <img
-              src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png"
-              className="ml-2 w-6 h-auto"
-              alt="Google"
-            />
-            <button className="text-white text-sm ml-4">Continue With Google</button>
-          </div>
-
-          <div className="flex items-center rounded-3xl border-gray-600 border-2 my-2 p-2 cursor-pointer active:scale-[.98] hover:scale-[1.01] ease-in-out transition-all bg-gray-800">
-            <img
-              src="https://cdn.iconscout.com/icon/free/png-256/free-facebook-icon-download-in-svg-png-gif-file-formats--logo-social-media-brand-f-logos-pack-company-icons-1597577.png?f=webp&w=256"
-              className="ml-2 w-6 h-auto"
-              alt="Facebook"
-            />
-            <button className="text-white text-sm ml-4">Continue With Facebook</button>
-          </div>
-
-          <div className="flex items-center rounded-3xl border-gray-600 border-2 my-2 p-2 cursor-pointer active:scale-[.98] hover:scale-[1.01] ease-in-out transition-all bg-gray-800">
-            <img
-              src="https://download.logo.wine/logo/Apple_Inc./Apple_Inc.-Logo.wine.png"
-              className="ml-2 w-6 h-auto"
-              alt="Apple"
-            />
-            <button className="text-white text-sm ml-4">Continue With Apple</button>
-          </div>
-        </div>
-
-        {/* Divider */}
-        <div className="flex items-center my-4">
-          <div className="flex-grow border-t border-gray-600"></div>
-          <span className="px-4 text-gray-500 text-sm">or</span>
-          <div className="flex-grow border-t border-gray-600"></div>
-        </div>
-
-        {/* Already have an account link */}
-        <p className="font-medium text-base text-center text-gray-400">
-          Already have an account?{' '}
-          <a href="/" className="text-dark-green hover:underline">
-            Sign in
-          </a>
-        </p>
+        <form enctype="multipart/form-data" onSubmit={(e) => handleSubmit(e)}>
+          {signUpSteps[stepNumber]}
+        </form>
       </div>
     </div>
   );
